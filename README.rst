@@ -91,7 +91,7 @@ deprecation-alias
 .. |language| image:: https://img.shields.io/github/languages/top/domdfcoding/deprecation-alias
 	:alt: GitHub top language
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/domdfcoding/deprecation-alias/v0.0.0
+.. |commits-since| image:: https://img.shields.io/github/commits-since/domdfcoding/deprecation-alias/v0.1.0
 	:target: https://github.com/domdfcoding/deprecation-alias/pulse
 	:alt: GitHub commits since tagged version
 
