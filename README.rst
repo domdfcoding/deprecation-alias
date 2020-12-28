@@ -15,10 +15,8 @@ deprecation-alias
 	:stub-columns: 1
 	:widths: 10 90
 
-	* - Docs
-	  - |docs| |docs_check|
 	* - Tests
-	  - |actions_linux| |actions_windows| |actions_macos|
+	  - |actions_linux| |actions_windows| |actions_macos| |coveralls|
 	* - PyPI
 	  - |pypi-version| |supported-versions| |supported-implementations| |wheel|
 	* - Anaconda
@@ -29,14 +27,6 @@ deprecation-alias
 	  - |codefactor| |actions_flake8| |actions_mypy| |pre_commit_ci|
 	* - Other
 	  - |license| |language| |requires|
-
-.. |docs| image:: https://img.shields.io/readthedocs/deprecation-alias/latest?logo=read-the-docs
-	:target: https://deprecation-alias.readthedocs.io/en/latest
-	:alt: Documentation Build Status
-
-.. |docs_check| image:: https://github.com/domdfcoding/deprecation-alias/workflows/Docs%20Check/badge.svg
-	:target: https://github.com/domdfcoding/deprecation-alias/actions?query=workflow%3A%22Docs+Check%22
-	:alt: Docs Check Status
 
 .. |actions_linux| image:: https://github.com/domdfcoding/deprecation-alias/workflows/Linux/badge.svg
 	:target: https://github.com/domdfcoding/deprecation-alias/actions?query=workflow%3A%22Linux%22
@@ -61,6 +51,10 @@ deprecation-alias
 .. |requires| image:: https://requires.io/github/domdfcoding/deprecation-alias/requirements.svg?branch=master
 	:target: https://requires.io/github/domdfcoding/deprecation-alias/requirements/?branch=master
 	:alt: Requirements Status
+
+.. |coveralls| image:: https://img.shields.io/coveralls/github/domdfcoding/deprecation-alias/master?logo=coveralls
+	:target: https://coveralls.io/github/domdfcoding/deprecation-alias?branch=master
+	:alt: Coverage
 
 .. |codefactor| image:: https://img.shields.io/codefactor/grade/github/domdfcoding/deprecation-alias?logo=codefactor
 	:target: https://www.codefactor.io/repository/github/domdfcoding/deprecation-alias

@@ -12,7 +12,7 @@ short_desc: 'A wrapper around ''deprecation'' providing support for deprecated a
 conda_channels:
  - conda-forge
 
-enable_tests: false
+enable_docs: false
 
 python_deploy_version: 3.6
 
