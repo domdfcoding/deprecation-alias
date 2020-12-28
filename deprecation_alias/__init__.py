@@ -21,7 +21,7 @@ from datetime import date
 from typing import Optional
 
 # 3rd party
-import deprecation
+import deprecation  # type: ignore
 from packaging import version
 
 __author__: str = "Dominic Davis-Foster"
