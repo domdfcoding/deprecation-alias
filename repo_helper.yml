@@ -1,0 +1,33 @@
+# Configuration for 'repo_helper' (https://github.com/domdfcoding/repo_helper)
+---
+modname: 'deprecation-alias'
+copyright_years: '2020'
+author: 'Dominic Davis-Foster'
+email: 'dominic@davis-foster.co.uk'
+username: 'domdfcoding'
+version: '0.0.0'
+license: 'Apache-2.0'
+short_desc: 'A wrapper around ''deprecation'' providing support for deprecated aliases.'
+
+conda_channels:
+ - conda-forge
+
+enable_tests: false
+
+python_deploy_version: 3.6
+
+python_versions:
+ - 3.6
+ - 3.7
+ - 3.8
+ - 3.9
+ - 3.10-dev
+ - pypy3
+
+classifiers:
+ - 'Development Status :: 4 - Beta'
+ - 'Intended Audience :: Developers'
+ - 'Topic :: Software Development :: Libraries :: Python Modules'
+
+keywords:
+ - deprecation
