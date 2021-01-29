@@ -31,3 +31,5 @@ classifiers:
 
 keywords:
  - deprecation
+
+min_coverage: 85
