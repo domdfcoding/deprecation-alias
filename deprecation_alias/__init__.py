@@ -89,7 +89,7 @@ def deprecated(
 
 	:param func: The function to deprecate. Can be used as an alternative to using the ``@deprecated(...)`` decorator.
 		If provided ``deprecated`` can't be used as a decorator.
-	:no-default func
+	:no-default func:
 
 	.. versionchanged:: 0.2.0  Added the ``func`` argument.
 	"""
