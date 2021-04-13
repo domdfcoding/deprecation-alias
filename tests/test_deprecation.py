@@ -45,3 +45,49 @@ def test_deprecation():
 	assert ".. deprecated::" in deprecated_func.__doc__
 	assert ".. deprecated::" in deprecated_alias.__doc__
 	assert ".. deprecated::" not in func.__doc__  # type: ignore
+
+
+def test_deprecation_as_function():
+
+	def func(*args, **kwargs):
+		"""
+		A normal function.
+		"""
+
+		return args, kwargs
+
+	deprecated_func = deprecated(
+			deprecated_in='1',
+			removed_in='3',
+			current_version='2',
+			details="use 'bar' instead.",
+			func=func,
+			)
+	deprecated_alias = deprecated(
+			deprecated_in='1',
+			removed_in='3',
+			current_version='2',
+			details="use 'bar' instead.",
+			func=func,
+			name="deprecated_alias",
+			)
+
+	with pytest.warns(DeprecationWarning) as record:
+		assert deprecated_func(1, a_list=['a', 'b']) == ((1, ), {"a_list": ['a', 'b']})
+		assert deprecated_alias(1, a_list=['a', 'b']) == ((1, ), {"a_list": ['a', 'b']})
+
+	assert len(record) == 2
+	assert record[0].message.args == (  # type: ignore
+			"func", '1', '3', "use 'bar' instead."
+			)
+	assert record[1].message.args == (  # type: ignore
+			"deprecated_alias", '1', '3', "use 'bar' instead."
+			)
+
+	assert deprecated_func.__doc__ is not None
+	assert ".. deprecated::" in deprecated_func.__doc__
+
+	assert deprecated_alias.__doc__ is not None
+	assert ".. deprecated::" in deprecated_alias.__doc__
+
+	assert ".. deprecated::" not in func.__doc__  # type: ignore

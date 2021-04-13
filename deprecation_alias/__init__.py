@@ -18,7 +18,7 @@ import functools
 import textwrap
 import warnings
 from datetime import date
-from typing import Optional
+from typing import Callable, Optional
 
 # 3rd party
 import deprecation  # type: ignore
@@ -38,15 +38,16 @@ def deprecated(
 		removed_in: Optional[str] = None,
 		current_version: Optional[str] = None,
 		details: str = '',
-		name: Optional[str] = None
-		):
+		name: Optional[str] = None,
+		func: Optional[Callable] = None,
+		) -> Callable:
 	r"""Decorate a function to signify its deprecation.
 
 	This function wraps a method that will soon be removed and does two things:
 
 	* The docstring of the method will be modified to include a notice
 	  about deprecation, e.g., "Deprecated since 0.9.11. Use foo instead."
-	* Raises a :class:`~deprecation.DeprecatedWarning`
+	* Raises a :class:`deprecation.DeprecatedWarning`
 	  via the :mod:`warnings` module, which is a subclass of the built-in
 	  :class:`DeprecationWarning`. Note that built-in
 	  :class:`DeprecationWarning`\s are ignored by default, so for users
@@ -85,6 +86,12 @@ def deprecated(
 	:param name: The name of the deprecated function, if an alias is being
 		deprecated. Default is to the name of the decorated function.
 	:no-default name:
+
+	:param func: The function to deprecate. Can be used as an alternative to using the ``@deprecated(...)`` decorator.
+		If provided ``deprecated`` can't be used as a decorator.
+	:no-default func
+
+	.. versionchanged:: 0.2.0  Added the ``func`` argument.
 	"""
 
 	# You can't just jump to removal. It's weird, unfair, and also makes
@@ -150,7 +157,7 @@ def deprecated(
 			if details:
 				parts["details"] = f" {details}"
 
-			deprecation_note = (".. deprecated::{deprecated_in}{removed_in}{details}".format_map(parts))
+			deprecation_note = ".. deprecated::{deprecated_in}{removed_in}{details}".format_map(parts)
 
 			# default location for insertion of deprecation note
 			loc = 1
@@ -200,4 +207,7 @@ def deprecated(
 
 		return _inner
 
-	return _function_wrapper
+	if func is None:
+		return _function_wrapper
+	else:
+		return _function_wrapper(func)
