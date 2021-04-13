@@ -1,3 +1,30 @@
 [build-system]
 requires = [ "setuptools>=40.6.0", "wheel>=0.34.2",]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "deprecation-alias"
+version = "0.1.1"
+description = "A wrapper around 'deprecation' providing support for deprecated aliases."
+readme = "README.rst"
+keywords = [ "deprecation",]
+dynamic = [ "requires-python", "classifiers", "dependencies",]
+
+[[project.authors]]
+email = "dominic@davis-foster.co.uk"
+name = "Dominic Davis-Foster"
+
+
+[project.license]
+file = "LICENSE"
+
+[project.urls]
+Homepage = "https://github.com/domdfcoding/deprecation-alias"
+"Issue Tracker" = "https://github.com/domdfcoding/deprecation-alias/issues"
+"Source Code" = "https://github.com/domdfcoding/deprecation-alias"
+
+[tool.mkrecipe]
+conda-channels = [ "conda-forge", "domdfcoding",]
+extras = "all"
+license-key = "Apache-2.0"
+package = "deprecation_alias"
