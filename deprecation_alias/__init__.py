@@ -14,11 +14,11 @@ A wrapper around 'deprecation' providing support for deprecated aliases.
 #
 
 # stdlib
+import datetime
 import functools
 import textwrap
 import warnings
-from datetime import date
-from typing import Callable, Optional
+from typing import Callable, Optional, Union
 
 # 3rd party
 import deprecation  # type: ignore
@@ -35,7 +35,7 @@ __all__ = ["deprecated"]
 
 def deprecated(
 		deprecated_in: Optional[str] = None,
-		removed_in: Optional[str] = None,
+		removed_in: Union[str, datetime.date, None] = None,
 		current_version: Optional[str] = None,
 		details: str = '',
 		name: Optional[str] = None,
@@ -109,8 +109,8 @@ def deprecated(
 	# StrictVersion won't take a None or a "", so make whatever goes to it
 	# is at least *something*. Compare versions only if removed_in is not
 	# of type datetime.date
-	if isinstance(removed_in, date):
-		if date.today() >= removed_in:
+	if isinstance(removed_in, datetime.date):
+		if datetime.date.today() >= removed_in:
 			is_unsupported = True
 		else:
 			is_deprecated = True
@@ -150,7 +150,7 @@ def deprecated(
 			if removed_in:
 				# If removed_in is a date, use "removed on"
 				# If removed_in is a version, use "removed in"
-				if isinstance(removed_in, date):
+				if isinstance(removed_in, datetime.date):
 					parts["removed_in"] = f"\n   This will be removed on {removed_in}."
 				else:
 					parts["removed_in"] = f"\n   This will be removed in {removed_in}."
