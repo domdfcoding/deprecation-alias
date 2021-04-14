@@ -3,7 +3,7 @@ import datetime
 
 # 3rd party
 import pytest
-from deprecation import UnsupportedWarning
+from deprecation import UnsupportedWarning  # type: ignore
 
 # this package
 from deprecation_alias import deprecated
