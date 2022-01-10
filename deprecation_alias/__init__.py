@@ -92,6 +92,7 @@ def deprecated(
 	:no-default func:
 
 	.. versionchanged:: 0.2.0  Added the ``func`` argument.
+	.. versionchanged:: 0.3.0  The warning in the documentation is always shown.
 	"""
 
 	# You can't just jump to removal. It's weird, unfair, and also makes
@@ -137,58 +138,57 @@ def deprecated(
 		# split docstring at first occurrence of newline
 		string_list = existing_docstring.split('\n', 1)
 
-		if should_warn:
-			# The various parts of this decorator being optional makes for
-			# a number of ways the deprecation notice could go. The following
-			# makes for a nicely constructed sentence with or without any
-			# of the parts.
+		# The various parts of this decorator being optional makes for
+		# a number of ways the deprecation notice could go. The following
+		# makes for a nicely constructed sentence with or without any
+		# of the parts.
 
-			parts = {"deprecated_in": '', "removed_in": '', "details": ''}
+		parts = {"deprecated_in": '', "removed_in": '', "details": ''}
 
-			if deprecated_in:
-				parts["deprecated_in"] = f" {deprecated_in}"
-			if removed_in:
-				# If removed_in is a date, use "removed on"
-				# If removed_in is a version, use "removed in"
-				if isinstance(removed_in, datetime.date):
-					parts["removed_in"] = f"\n   This will be removed on {removed_in}."
-				else:
-					parts["removed_in"] = f"\n   This will be removed in {removed_in}."
-			if details:
-				parts["details"] = f" {details}"
+		if deprecated_in:
+			parts["deprecated_in"] = f" {deprecated_in}"
+		if removed_in:
+			# If removed_in is a date, use "removed on"
+			# If removed_in is a version, use "removed in"
+			if isinstance(removed_in, datetime.date):
+				parts["removed_in"] = f"\n   This will be removed on {removed_in}."
+			else:
+				parts["removed_in"] = f"\n   This will be removed in {removed_in}."
+		if details:
+			parts["details"] = f" {details}"
 
-			deprecation_note = ".. deprecated::{deprecated_in}{removed_in}{details}".format_map(parts)
+		deprecation_note = ".. deprecated::{deprecated_in}{removed_in}{details}".format_map(parts)
 
-			# default location for insertion of deprecation note
-			loc = 1
+		# default location for insertion of deprecation note
+		loc = 1
 
-			if len(string_list) > 1:
-				# With a multi-line docstring, when we modify
-				# existing_docstring to add our deprecation_note,
-				# if we're not careful we'll interfere with the
-				# indentation levels of the contents below the
-				# first line, or as PEP 257 calls it, the summary
-				# line. Since the summary line can start on the
-				# same line as the """, dedenting the whole thing
-				# won't help. Split the summary and contents up,
-				# dedent the contents independently, then join
-				# summary, dedent'ed contents, and our
-				# deprecation_note.
+		if len(string_list) > 1:
+			# With a multi-line docstring, when we modify
+			# existing_docstring to add our deprecation_note,
+			# if we're not careful we'll interfere with the
+			# indentation levels of the contents below the
+			# first line, or as PEP 257 calls it, the summary
+			# line. Since the summary line can start on the
+			# same line as the """, dedenting the whole thing
+			# won't help. Split the summary and contents up,
+			# dedent the contents independently, then join
+			# summary, dedent'ed contents, and our
+			# deprecation_note.
 
-				# in-place dedent docstring content
-				string_list[1] = textwrap.dedent(string_list[1])
+			# in-place dedent docstring content
+			string_list[1] = textwrap.dedent(string_list[1])
 
-				# we need another newline
-				string_list.insert(loc, '\n')
+			# we need another newline
+			string_list.insert(loc, '\n')
 
-				# change the message_location if we add to end of docstring
-				# do this always if not "top"
-				if deprecation.message_location != "top":
-					loc = 3
+			# change the message_location if we add to end of docstring
+			# do this always if not "top"
+			if deprecation.message_location != "top":
+				loc = 3
 
-			# insert deprecation note and dual newline
-			string_list.insert(loc, deprecation_note)
-			string_list.insert(loc, "\n\n")
+		# insert deprecation note and dual newline
+		string_list.insert(loc, deprecation_note)
+		string_list.insert(loc, "\n\n")
 
 		@functools.wraps(function)
 		def _inner(*args, **kwargs):
