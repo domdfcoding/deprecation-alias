@@ -21,8 +21,8 @@ setup(
 		description="A wrapper around 'deprecation' providing support for deprecated aliases.",
 		extras_require=extras_require,
 		install_requires=install_requires,
+		name="deprecation-alias",
 		py_modules=[],
-		version=__version__,
 		)
 
 shutil.rmtree("deprecation_alias.egg-info", ignore_errors=True)
