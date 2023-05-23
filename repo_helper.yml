@@ -13,7 +13,6 @@ conda_channels:
  - conda-forge
 
 enable_docs: false
-python_deploy_version: 3.6
 min_coverage: 85
 
 python_versions:
@@ -22,10 +21,12 @@ python_versions:
  - 3.8
  - 3.9
  - "3.10"
- - 3.11-dev
+ - "3.11"
+ - 3.12-dev
  - pypy36
  - pypy37
  - pypy38
+ - pypy39
 
 classifiers:
  - 'Development Status :: 4 - Beta'
