@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "deprecation-alias"
-version = "0.3.1"
+version = "0.3.2"
 description = "A wrapper around 'deprecation' providing support for deprecated aliases."
 readme = "README.rst"
 requires-python = ">=3.6.1"
