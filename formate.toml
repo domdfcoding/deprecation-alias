@@ -46,4 +46,4 @@ known_third_party = [
     "pytest_timeout",
     "requests",
 ]
-known_first_party = "deprecation_alias"
+known_first_party = [ "deprecation_alias",]
