@@ -1,6 +1,6 @@
 [build-system]
-requires = [ "setuptools!=61.*,<=67.1.0,>=40.6.0", "wheel>=0.34.2",]
-build-backend = "setuptools.build_meta"
+requires = [ "hatch-requirements-txt",]
+build-backend = "hatchling.build"
 
 [project]
 name = "deprecation-alias"
@@ -93,3 +93,22 @@ order = 10
 [tool.dependency-dash."tests/requirements.txt"]
 order = 20
 include = false
+
+[tool.hatch.build]
+exclude = [
+    "/*",
+    "!/deprecation_alias",
+    "!/deprecation_alias/**/requirements.txt",
+    "!/requirements.txt",
+    "tests",
+    "doc-source",
+]
+
+[tool.hatch.build.sdist]
+include = [ "deprecation_alias", "requirements.txt",]
+
+[tool.hatch.build.wheel]
+include = [ "deprecation_alias",]
+
+[tool.hatch.metadata.hooks.requirements_txt]
+files = [ "requirements.txt",]
