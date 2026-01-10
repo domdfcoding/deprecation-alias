@@ -18,10 +18,10 @@ import datetime
 import functools
 import textwrap
 import warnings
-from typing import Callable, Optional, Union
+from typing import Callable, Optional, TypeVar, Union
 
 # 3rd party
-import deprecation  # type: ignore
+import deprecation  # type: ignore[import-untyped]
 from packaging import version
 
 __author__: str = "Dominic Davis-Foster"
@@ -31,6 +31,8 @@ __version__: str = "0.4.0"
 __email__: str = "dominic@davis-foster.co.uk"
 
 __all__ = ["deprecated"]
+
+_C = TypeVar("_C", bound=Callable)
 
 
 def deprecated(
@@ -116,11 +118,11 @@ def deprecated(
 		else:
 			is_deprecated = True
 	elif current_version:
-		current_version = version.parse(current_version)  # type: ignore
+		current_version_v = version.parse(current_version)
 
-		if removed_in is not None and current_version >= version.parse(removed_in):  # type: ignore
+		if removed_in is not None and current_version_v >= version.parse(removed_in):
 			is_unsupported = True
-		elif deprecated_in is not None and current_version >= version.parse(deprecated_in):  # type: ignore
+		elif deprecated_in is not None and current_version_v >= version.parse(deprecated_in):
 			is_deprecated = True
 	else:
 		# If we can't actually calculate that we're in a period of
@@ -131,7 +133,7 @@ def deprecated(
 
 	should_warn = any([is_deprecated, is_unsupported])
 
-	def _function_wrapper(function):
+	def _function_wrapper(function: _C) -> Callable[[], _C]:
 		# Everything *should* have a docstring, but just in case...
 		existing_docstring = function.__doc__ or ''
 
@@ -191,7 +193,7 @@ def deprecated(
 		string_list.insert(loc, "\n\n")
 
 		@functools.wraps(function)
-		def _inner(*args, **kwargs):
+		def _inner(*args, **kwargs):  # noqa: MAN002
 			if should_warn:
 				if is_unsupported:
 					cls = deprecation.UnsupportedWarning
