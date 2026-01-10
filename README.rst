@@ -99,11 +99,11 @@ deprecation-alias
 	:target: https://github.com/domdfcoding/deprecation-alias/commit/master
 	:alt: GitHub last commit
 
-.. |maintained| image:: https://img.shields.io/maintenance/yes/2025
+.. |maintained| image:: https://img.shields.io/maintenance/yes/2026
 	:alt: Maintenance
 
 .. |pypi-downloads| image:: https://img.shields.io/pypi/dm/deprecation-alias
-	:target: https://pypi.org/project/deprecation-alias/
+	:target: https://pypistats.org/packages/deprecation-alias
 	:alt: PyPI - Downloads
 
 .. end shields
