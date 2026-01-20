@@ -9,9 +9,8 @@ version: '0.4.0'
 license: 'Apache-2.0'
 short_desc: 'A wrapper around ''deprecation'' providing support for deprecated aliases.'
 
-conda_channels:
- - conda-forge
-
+on_conda_forge: true
+enable_conda: false
 enable_docs: false
 min_coverage: 85
 use_hatch: true

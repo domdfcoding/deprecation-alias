@@ -76,12 +76,12 @@ deprecation-alias
 	:target: https://pypi.org/project/deprecation-alias/
 	:alt: PyPI - Wheel
 
-.. |conda-version| image:: https://img.shields.io/conda/v/domdfcoding/deprecation-alias?logo=anaconda
-	:target: https://anaconda.org/domdfcoding/deprecation-alias
+.. |conda-version| image:: https://img.shields.io/conda/v/conda-forge/deprecation-alias?logo=anaconda
+	:target: https://anaconda.org/conda-forge/deprecation-alias
 	:alt: Conda - Package Version
 
-.. |conda-platform| image:: https://img.shields.io/conda/pn/domdfcoding/deprecation-alias?label=conda%7Cplatform
-	:target: https://anaconda.org/domdfcoding/deprecation-alias
+.. |conda-platform| image:: https://img.shields.io/conda/pn/conda-forge/deprecation-alias?label=conda%7Cplatform
+	:target: https://anaconda.org/conda-forge/deprecation-alias
 	:alt: Conda - Platform
 
 .. |license| image:: https://img.shields.io/github/license/domdfcoding/deprecation-alias
@@ -123,17 +123,8 @@ To install with ``pip``:
 
 To install with ``conda``:
 
-	* First add the required channels
+.. code-block:: bash
 
-	.. code-block:: bash
-
-		$ conda config --add channels https://conda.anaconda.org/conda-forge
-		$ conda config --add channels https://conda.anaconda.org/domdfcoding
-
-	* Then install
-
-	.. code-block:: bash
-
-		$ conda install deprecation-alias
+	$ conda install -c conda-forge deprecation-alias
 
 .. end installation
