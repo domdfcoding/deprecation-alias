@@ -98,8 +98,9 @@ exclude = [
     "doc-source",
 ]
 
-[tool.hatch.build.sdist]
-include = [ "deprecation_alias", "requirements.txt",]
+[tool.hatch.build.targets.sdist]
+include = [ "deprecation_alias", "requirements.txt", "tests", "tox.ini",]
+exclude = []
 
 [tool.hatch.build.wheel]
 include = [ "deprecation_alias",]
